@@ -37,7 +37,6 @@ function SalaryPredictor() {
       setLoading(false);
     }
   };
-
   return (
     <div className="bg-white rounded-xl shadow-md overflow-hidden">
       <div className="p-8">
@@ -47,7 +46,7 @@ function SalaryPredictor() {
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
             <div>
               <label htmlFor="annees_experience" className="block text-sm font-medium text-gray-700">
                 Années d'expérience
@@ -62,9 +61,7 @@ function SalaryPredictor() {
                 className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
                 required
               />
-            </div>
-
-            <div>
+            </div>            <div>
               <label htmlFor="projets_realises" className="block text-sm font-medium text-gray-700">
                 Projets réalisés
               </label>
@@ -79,77 +76,79 @@ function SalaryPredictor() {
                 required
               />
             </div>
+            
+            <div>
+              <label htmlFor="diplome" className="block text-sm font-medium text-gray-700">
+                Diplôme
+              </label>
+              <input
+                type="text"
+                name="diplome"
+                id="diplome"
+                value={formData.diplome}
+                onChange={handleChange}
+                placeholder="Master, Licence, BTS"
+                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                required
+              />
+            </div>
           </div>
 
-          <div>
-            <label htmlFor="competences" className="block text-sm font-medium text-gray-700">
-              Compétences (séparées par des virgules)
-            </label>
-            <input
-              type="text"
-              name="competences"
-              id="competences"
-              value={formData.competences}
-              onChange={handleChange}
-              placeholder="Python, Machine Learning, Data Science"
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-              required
-            />
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+            <div>
+              <label htmlFor="competences" className="block text-sm font-medium text-gray-700">
+                Compétences (séparées par des virgules)
+              </label>
+              <textarea
+                name="competences"
+                id="competences"
+                rows={2}
+                value={formData.competences}
+                onChange={handleChange}
+                placeholder="Python, Machine Learning, Data Science"
+                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                required
+              />
+            </div>
+
+            <div>
+              <label htmlFor="langues" className="block text-sm font-medium text-gray-700">
+                Langues parlées (séparées par des virgules)
+              </label>
+              <textarea
+                name="langues"
+                id="langues"
+                rows={2}
+                value={formData.langues}
+                onChange={handleChange}
+                placeholder="Français, Anglais, Espagnol"
+                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                required
+              />
+            </div>
+          </div>          <div className="grid grid-cols-1 gap-6">
+            <div>
+              <label htmlFor="specialité" className="block text-sm font-medium text-gray-700">
+                Spécialité
+              </label>
+              <input
+                type="text"
+                name="specialité"
+                id="specialité"
+                value={formData.specialité}
+                onChange={handleChange}
+                placeholder="Développement web, IA, Cybersécurité"
+                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                required
+              />
+            </div>
           </div>
 
-          <div>
-            <label htmlFor="langues" className="block text-sm font-medium text-gray-700">
-              Langues parlées (séparées par des virgules)
-            </label>
-            <input
-              type="text"
-              name="langues"
-              id="langues"
-              value={formData.langues}
-              onChange={handleChange}
-              placeholder="Français, Anglais, Espagnol"
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-              required
-            />
-          </div>
-
-          <div>
-            <label htmlFor="specialité" className="block text-sm font-medium text-gray-700">
-              Spécialité
-            </label>
-            <input
-              type="text"
-              name="specialité"
-              id="specialité"
-              value={formData.specialité}
-              onChange={handleChange}
-              placeholder="Développement web, IA, Cybersécurité"
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-              required
-            />
-          </div>
-
-          <div>
-            <label htmlFor="diplome" className="block text-sm font-medium text-gray-700">
-              Diplôme
-            </label>
-            <input
-              type="text"
-              name="diplome"
-              id="diplome"
-              value={formData.diplome}
-              onChange={handleChange}
-              placeholder="Master, Licence, BTS"
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-              required
-            />
-          </div>
-
-          <div>
+          <div className="pt-4">
             <button
               type="submit"
               disabled={loading}
-              className={`w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
+              className={`w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
             >
               {loading ? 'Chargement...' : 'Prédire le salaire'}
             </button>
@@ -163,9 +162,10 @@ function SalaryPredictor() {
         )}
 
         {result !== null && !error && (
-          <div className="mt-6 bg-green-50 p-6 rounded-md">
-            <h2 className="text-xl font-semibold text-center text-gray-900">Salaire estimé</h2>
-            <p className="mt-2 text-3xl font-bold text-center text-green-600">{result.toLocaleString('fr-FR')} €</p>
+          <div className="mt-6 bg-green-50 p-8 rounded-md text-center">
+            <h2 className="text-2xl font-semibold text-gray-900">Salaire estimé</h2>
+            <p className="mt-4 text-5xl font-bold text-green-600">{result.toLocaleString('fr-FR')} €</p>
+            <p className="mt-4 text-sm text-gray-600">Estimation basée sur vos informations professionnelles</p>
           </div>
         )}
       </div>
