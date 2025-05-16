@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import axios from 'axios';
 
-// In Vite, environment variables are exposed on import.meta.env, not process.env
-const apiUrl = 'http://localhost:5000' || import.meta.env.VITE_PUBLIC_API_URL ;
+// Define local and production URLs
+const localUrl = 'http://localhost:5000';
+const renderUrl = 'https://ml-project-xfbb.onrender.com';
 
 function CandidateRecommender() {
   const [offerData, setOfferData] = useState({
@@ -49,9 +50,17 @@ function CandidateRecommender() {
         offre: offerData
       };
       
-      const response = await axios.post(`${apiUrl}/evaluate_candidate`, requestData);
-      setResult(response.data);
-      setLoading(false);
+      try {
+        // First try with localhost
+        const response = await axios.post(`${localUrl}/evaluate_candidate`, requestData);
+        setResult(response.data);
+        setLoading(false);
+      } catch (localErr) {
+        // If localhost fails, try with render
+        const response = await axios.post(`${renderUrl}/evaluate_candidate`, requestData);
+        setResult(response.data);
+        setLoading(false);
+      }
     } catch (err) {
       setError(err.response?.data?.error || 'An error occurred during candidate evaluation');
       console.error('Error:', err);
