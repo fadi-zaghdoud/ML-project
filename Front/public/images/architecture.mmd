@@ -1,0 +1,33 @@
+graph TD
+    A[Frontend React App] -->|API Requests| B[Flask Backend]
+    B -->|Prediction| C[Salary Prediction Model]
+    B -->|Recommendation| D[Candidate Evaluation Model]
+    C -->|Processed Result| B
+    D -->|Processed Result| B
+    B -->|Response| A
+    
+    subgraph Frontend
+        A1[SalaryPredictor.jsx]
+        A2[CandidateRecommender.jsx]
+        A3[TeamPage.jsx]
+        A4[Header.jsx]
+    end
+    
+    subgraph Backend
+        B1[Flask API Routes]
+        B2[Data Processing]
+        B3[ML Models Integration]
+    end
+    
+    subgraph ML Models
+        C
+        D
+    end
+    
+    A --> A1
+    A --> A2
+    A --> A3
+    A --> A4
+    B --> B1
+    B --> B2
+    B --> B3
