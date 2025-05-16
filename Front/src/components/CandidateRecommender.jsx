@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import axios from 'axios';
-import config from '../config';
+
+// In Vite, environment variables are exposed on import.meta.env, not process.env
+const apiUrl = 'http://localhost:5000' || import.meta.env.VITE_PUBLIC_API_URL ;
 
 function CandidateRecommender() {
   const [offerData, setOfferData] = useState({
@@ -47,15 +49,7 @@ function CandidateRecommender() {
         offre: offerData
       };
       
-      try {
-        // First try with localhost
-        const response = await axios.post(`${config.apiUrls.local}/evaluate_candidate`, requestData);
-        setResult(response.data);
-      } catch (localErr) {
-        // If localhost fails, try with render
-        const response = await axios.post(`${config.apiUrls.render}/evaluate_candidate`, requestData);
-        setResult(response.data);
-      }
+      const response = await axios.post(`${apiUrl}/evaluate_candidate`, requestData);
       setResult(response.data);
       setLoading(false);
     } catch (err) {
