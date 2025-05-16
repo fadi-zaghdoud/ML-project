@@ -16,14 +16,10 @@ function App() {
       <Header onModelChange={handleModelChange} />
       
       <main className="flex-grow w-full py-8 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-5xl mx-auto">
-          {activeModel === 'salary' && <SalaryPredictor />}
-          {activeModel === 'skills' && <SkillsRecommender />}
+        <div className="max-w-5xl mx-auto">          {activeModel === 'salary' && <SalaryPredictor />}
           {activeModel === 'candidates' && <CandidateRecommender />}
         </div>
-      </main>
-      
-      <footer className="w-full bg-white py-6 mt-auto">
+      </main>      <footer className="w-full bg-white py-6 mt-auto">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <p className="text-center text-sm text-gray-500">
             © {new Date().getFullYear()} IA Prédiction | Projet ML

@@ -109,8 +109,7 @@ def evaluate_candidate():
         
         # Determine recommendation based on score threshold
         recommende = score >= 50
-        
-        # Build response
+          # Build response
         result = {
             "points_forts": ", ".join(points_forts),
             "points_faibles": ", ".join(points_faibles),
@@ -119,9 +118,8 @@ def evaluate_candidate():
         }
         
         return jsonify(result)
-    
     except Exception as e:
         return jsonify({'error': f'Error evaluating candidate: {str(e)}'}), 500
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True)

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
+import config from '../config';
 
 function SalaryPredictor() {
   const [formData, setFormData] = useState({
@@ -20,16 +21,21 @@ function SalaryPredictor() {
       ...formData,
       [name]: name === 'annees_experience' || name === 'projets_realises' ? parseInt(value) || 0 : value
     });
-  };
-
-  const handleSubmit = async (e) => {
+  };  const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setError(null);
     
     try {
-      const response = await axios.post('http://localhost:5000/predict', formData);
-      setResult(response.data.salaire_pred);
+      // First try with localhost
+      try {
+        const response = await axios.post(`${config.apiUrls.local}/predict`, formData);
+        setResult(response.data.salaire_pred);
+      } catch (localErr) {
+        // If localhost fails, try with render
+        const response = await axios.post(`${config.apiUrls.render}/predict`, formData);
+        setResult(response.data.salaire_pred);
+      }
     } catch (err) {      setError(err.response?.data?.error || 'An error occurred during the prediction');
       console.error('Error:', err);
     } finally {

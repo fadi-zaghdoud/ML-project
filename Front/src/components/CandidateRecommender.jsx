@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
+import config from '../config';
 
 function CandidateRecommender() {
   const [offerData, setOfferData] = useState({
@@ -34,8 +35,7 @@ function CandidateRecommender() {
       ...candidateData,
       [name]: name === 'annees_experience' || name === 'projets_realises' ? parseInt(value) || 0 : value
     });
-  };
-  const handleSubmit = async (e) => {
+  };  const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setError(null);
@@ -47,7 +47,15 @@ function CandidateRecommender() {
         offre: offerData
       };
       
-      const response = await axios.post('http://localhost:5000/evaluate_candidate', requestData);
+      try {
+        // First try with localhost
+        const response = await axios.post(`${config.apiUrls.local}/evaluate_candidate`, requestData);
+        setResult(response.data);
+      } catch (localErr) {
+        // If localhost fails, try with render
+        const response = await axios.post(`${config.apiUrls.render}/evaluate_candidate`, requestData);
+        setResult(response.data);
+      }
       setResult(response.data);
       setLoading(false);
     } catch (err) {
