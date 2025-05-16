@@ -24,8 +24,7 @@ function Header({ onModelChange }) {
           </div>
           <h1 className="text-3xl font-bold text-white">TuniHire</h1> {/* Increased title size */}
         </div>
-        
-        <div className="flex flex-wrap justify-center gap-2">
+          <div className="flex flex-wrap justify-center gap-2">
           <button
             onClick={() => handleModelChange('salary')}
             className={`px-3 sm:px-4 py-2 rounded-lg font-medium text-sm sm:text-base transition-all duration-300 ease-in-out transform hover:scale-105 ${
@@ -45,6 +44,16 @@ function Header({ onModelChange }) {
             }`}
           >
             Candidate Recommender
+          </button>
+          <button
+            onClick={() => handleModelChange('team')}
+            className={`px-3 sm:px-4 py-2 rounded-lg font-medium text-sm sm:text-base transition-all duration-300 ease-in-out transform hover:scale-105 ${
+              currentModel === 'team'
+                ? 'bg-white text-indigo-700 shadow-lg'
+                : 'bg-indigo-800 bg-opacity-40 text-white hover:bg-opacity-60'
+            }`}
+          >
+            Our Team
           </button>
         </div>
       </div>
