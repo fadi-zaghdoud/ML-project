@@ -2,7 +2,7 @@ import { useState } from 'react'
 import './App.css'
 import Header from './components/Header'
 import SalaryPredictor from './components/SalaryPredictor'
-import SkillsRecommender from './components/SkillsRecommender'
+import CandidateRecommender from './components/CandidateRecommender'
 
 function App() {
   const [activeModel, setActiveModel] = useState('salary');
@@ -17,11 +17,9 @@ function App() {
       
       <main className="flex-grow w-full py-8 px-4 sm:px-6 lg:px-8">
         <div className="max-w-5xl mx-auto">
-          {activeModel === 'salary' ? (
-            <SalaryPredictor />
-          ) : (
-            <SkillsRecommender />
-          )}
+          {activeModel === 'salary' && <SalaryPredictor />}
+          {activeModel === 'skills' && <SkillsRecommender />}
+          {activeModel === 'candidates' && <CandidateRecommender />}
         </div>
       </main>
       

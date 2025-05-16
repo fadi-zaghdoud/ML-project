@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import logo from '/images/logo_ia.svg'; // Utilisation du logo SVG
+import logo from '/images/logo.png'; // Utilisation du logo SVG
 
 function Header({ onModelChange }) {
   const [currentModel, setCurrentModel] = useState('salary');
@@ -11,41 +11,40 @@ function Header({ onModelChange }) {
     return (
     <header className="bg-gradient-to-r from-indigo-700 to-blue-600 shadow-lg w-full">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col md:flex-row justify-between items-center">
-        <div className="flex items-center space-x-4 mb-4 md:mb-0">
-          <div className="bg-white p-2 rounded-full shadow-md">
+        <div className="flex items-center space-x-4 mb-4 md:mb-0">          <div className="bg-white p-2 rounded-full shadow-md">
             <img
               src={logo}
-              alt="Logo IA"
-              className="h-12 w-auto" // Légère augmentation de la taille du logo
+              alt="AI Logo"
+              className="h-12 w-auto" // Slightly increased logo size
               onError={(e) => {
                 e.target.onerror = null;
-                e.target.src = '/vite.svg'; // Image de fallback si le logo n'existe pas
+                e.target.src = '/vite.svg'; // Fallback image if logo doesn't exist
               }}
             />
           </div>
-          <h1 className="text-3xl font-bold text-white">IA Prédiction</h1> {/* Taille du titre augmentée */}
+          <h1 className="text-3xl font-bold text-white">TuniHire</h1> {/* Increased title size */}
         </div>
         
-        <div className="flex space-x-2 sm:space-x-4">
+        <div className="flex flex-wrap justify-center gap-2">
           <button
             onClick={() => handleModelChange('salary')}
-            className={`px-4 sm:px-6 py-2.5 rounded-lg font-medium transition-all duration-300 ease-in-out transform hover:scale-105 ${
+            className={`px-3 sm:px-4 py-2 rounded-lg font-medium text-sm sm:text-base transition-all duration-300 ease-in-out transform hover:scale-105 ${
               currentModel === 'salary'
                 ? 'bg-white text-indigo-700 shadow-lg'
                 : 'bg-indigo-800 bg-opacity-40 text-white hover:bg-opacity-60'
             }`}
           >
-            Prédiction Salaire
+            Salary Prediction
           </button>
           <button
-            onClick={() => handleModelChange('skills')}
-            className={`px-4 sm:px-6 py-2.5 rounded-lg font-medium transition-all duration-300 ease-in-out transform hover:scale-105 ${
-              currentModel === 'skills'
+            onClick={() => handleModelChange('candidates')}
+            className={`px-3 sm:px-4 py-2 rounded-lg font-medium text-sm sm:text-base transition-all duration-300 ease-in-out transform hover:scale-105 ${
+              currentModel === 'candidates'
                 ? 'bg-white text-indigo-700 shadow-lg'
                 : 'bg-indigo-800 bg-opacity-40 text-white hover:bg-opacity-60'
             }`}
           >
-            Recommandation Compétences
+            Candidate Recommender
           </button>
         </div>
       </div>
